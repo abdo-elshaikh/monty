@@ -4,9 +4,9 @@
  *@top: stack
  *@line_number: instruction number
  */
-void get_op_function(stack_t **top, unsigned int line_number)
+void get_op_function(stack_t **strack, unsigned int line_number)
 {
-	instruction_t ops[] = {
+	instruction_t instruction[] = {
 		{"push", push},
 		{"pall", pall},
 		{"pint", pint},
@@ -25,22 +25,23 @@ void get_op_function(stack_t **top, unsigned int line_number)
 		{NULL, NULL}
 	};
 	int i;
-
-	for (i = 0; ops[i].opcode != NULL; i++)
+	int unknown_opcode = 1;
+	
+	for (i = 0; instruction[i].opcode != NULL; i++)
 	{
-		if (strcmp(global.line[0], ops[i].opcode) == 0)
+		if (strcmp(instruction[i].opcode, global.line[0]) == 0)
 		{
-			ops[i].f(top, line_number);
-			return;
-		}
+			instruction[i].f(strack, line_number);
+			unknown_opcode = 0;
+			break;
+		}		
 	}
-	if (ops[i].opcode == NULL)
+	if (unknown_opcode == 1)
 	{
-		fprintf(stderr, "L%u: unknown instruction %s\n", line_number,
-		global.line[0]);
-		free(global.line);
-		free_dlistint(*top);
+		fprintf(stderr, "L%i: unknown instruction %s\n", line_number, global.line[0]);
 		release(NULL, NULL, 'r');
+		free_dlistint(*strack);
+		free(global.line);
 		exit(EXIT_FAILURE);
 	}
 }

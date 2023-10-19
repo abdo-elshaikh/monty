@@ -51,7 +51,7 @@ typedef struct arg
 	char **line;
 }global_t;
 
-global_t global;
+extern global_t global;
 
 char **format_line(char *input);
 void get_op_function(stack_t **top, unsigned int line_number);
@@ -78,5 +78,5 @@ void pchar(stack_t **stack, unsigned int line_number);
 void rotl(stack_t **stack, unsigned int line_number);
 void pchar(stack_t **stack, unsigned int line_number);
 void rotr(stack_t **stack, unsigned int line_number);
-
+void stack_init(stack_t *stack);
 #endif

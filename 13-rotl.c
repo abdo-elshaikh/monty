@@ -8,14 +8,14 @@ void rotl(stack_t **stack, unsigned int __attribute__((unused))line_number)
 {
 	stack_t *top, *bottom;
 
-	if (stack == '\0' || *stack == '\0')
+	if (stack == NULL || *stack == NULL)
 		return;
 	top = *stack, bottom = *stack;
-	while (bottom->next != '\0')
+	while (bottom->next != NULL)
 		bottom = bottom->next;
 	bottom->next = top;
 	top->prev = bottom;
-	top->next->prev = '\0';
+	top->next->prev = NULL;
 	*stack = top->next;
-	top->next = '\0';
+	top->next = NULL;
 }

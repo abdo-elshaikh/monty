@@ -18,7 +18,7 @@ void push(stack_t **stack, __attribute__((unused))unsigned int last_line)
 	}
 	tmp = *stack;
 	new = malloc(sizeof(stack_t));
-	if (new == '\0')
+	if (new == NULL)
 	{
 		fprintf(stderr, "Error: malloc failed\n");
 		release(NULL, NULL, 'r');
@@ -26,11 +26,11 @@ void push(stack_t **stack, __attribute__((unused))unsigned int last_line)
 		free(global.line);
 		exit(EXIT_FAILURE);
 	}
-	new->next = '\0';
+	new->next = NULL;
 	new->n = atoi(global.line[1]);
-	new->prev = '\0';
+	new->prev = NULL;
 	*stack = new;
 	new->next = tmp;
-	if (tmp != '\0')
+	if (tmp != NULL)
 		tmp->prev = new;
 }

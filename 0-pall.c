@@ -1,4 +1,5 @@
 #include "monty.h"
+global_t global;
 /**
  *pall - print the elements into the stack in Lifo way
  *@stack: stack of elements
@@ -10,9 +11,9 @@ void pall(stack_t **stack,  __attribute__((unused))unsigned int last_line)
 	stack_t *stack_print;
 
 	stack_print = *stack;
-	if (stack_print == '\0')
+	if (stack_print == NULL)
 		return;
-	while (stack_print != '\0')
+	while (stack_print != NULL)
 	{
 		printf("%i\n", stack_print->n);
 		stack_print = stack_print->next;

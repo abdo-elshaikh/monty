@@ -5,15 +5,13 @@
  */
 void free_double(char **d)
 {
-	size_t i = 0;
-
-	if (d != '\0')
+	int i = 0;
+	
+	while (d[i] != NULL)
 	{
-		while (d[i])
-		{
-			free(d[i]);
-			i++;
-		}
+		free(d[i]);
+		i++;
 	}
 	free(d);
+	d = NULL;
 }

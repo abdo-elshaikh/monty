@@ -6,17 +6,17 @@
  */
 void rotr(stack_t **stack, unsigned int __attribute__((unused))line_number)
 {
-	stack_t *top = '\0', *bottom = '\0';
+	stack_t *top = NULL, *bottom = NULL;
 
-	if (stack == '\0' || *stack == '\0')
+	if (stack == NULL || *stack == NULL)
 		return;
 	top = *stack, bottom = *stack;
-	while (bottom->next != '\0')
+	while (bottom->next != NULL)
 		bottom = bottom->next;
 
 	top->prev = bottom;
 	bottom->next = top;
-	bottom->prev->next = '\0';
-	bottom->prev = '\0';
+	bottom->prev->next = NULL;
+	bottom->prev = NULL;
 	stack[0] = bottom;
 }
