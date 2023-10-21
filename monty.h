@@ -54,7 +54,6 @@ typedef struct arg
 } global_t;
 
 extern global_t global;
-
 char **format_line(char *input);
 void get_op_function(stack_t **top, unsigned int line_number);
 void push(stack_t **stack, unsigned int line_number);

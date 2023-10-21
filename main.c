@@ -1,4 +1,5 @@
 #include "monty.h"
+global_t global;
 /**
  * main - check the code
  * @argc: number of arguments
@@ -25,17 +26,16 @@ int main(int argc, char **argv)
 		exit(EXIT_FAILURE);
 	}
 
-	while (fgets(current_line, 100, file) != NULL)
+	while (fgets(current_line, sizeof(current_line), file) != NULL)
 	{
+		current_line_number++;
 		global.line = format_line(current_line);
 		if (global.line == NULL || global.line[0][0] == '#')
 		{
 			continue;
 		}
 		get_op_function(&stack_ptr, current_line_number);
-		current_line_number++;
 	}
-
 	fclose(file);
 
 	return (0);
