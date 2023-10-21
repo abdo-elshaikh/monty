@@ -6,41 +6,40 @@
  */
 char **format_line(char *input)
 {
-    char **tokens = NULL;
-    char *token = NULL;
-    size_t tokenCount = 0;
+	char **tokens = NULL;
+	char *token = NULL;
+	size_t tokenCount = 0;
 
-    if (input == NULL || input[0] == '\0')
-        return (NULL);
-        
-    delete_newline(&input);
+	if (input == NULL || input[0] == '\0')
+		return (NULL);
 
-    if (empty_codes(&input) == 1)
-        return ('\0');
+	delete_newline(&input);
 
-    tokens = malloc(sizeof(char **) * 3);
-    if (tokens == NULL)
-    {
-        fprintf(stderr, "Error: malloc failed");
-        release(NULL, NULL, 'r');
-        free(tokens);
-        exit(EXIT_FAILURE);
-    }
+	if (empty_codes(&input) == 1)
+		return ('\0');
 
-    tokens[0] = NULL;
-    tokens[1] = NULL;
-    tokens[2] = NULL;
+	tokens = malloc(sizeof(char **) * 3);
+	if (tokens == NULL)
+	{
+		fprintf(stderr, "Error: malloc failed");
+		release(NULL, NULL, 'r');
+		exit(EXIT_FAILURE);
+	}
 
-    token = strtok(input, " ");
-    while (token != NULL && tokenCount <= 1)
-    {
-        tokens[tokenCount] = token;
-        token = strtok(NULL, " ");
-        if (tokenCount >= 1)
-            break;
-        tokenCount++;
-    }
+	tokens[0] = NULL;
+	tokens[1] = NULL;
+	tokens[2] = NULL;
 
-    tokens[tokenCount + 1] = NULL;
-    return (tokens);
+	token = strtok(input, " ");
+	while (token != NULL && tokenCount <= 1)
+	{
+		tokens[tokenCount] = token;
+		token = strtok(NULL, " ");
+		if (tokenCount >= 1)
+			break;
+		tokenCount++;
+	}
+
+	tokens[tokenCount + 1] = NULL;
+	return (tokens);
 }

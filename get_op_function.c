@@ -1,8 +1,9 @@
 #include "monty.h"
 /**
  *get_op_function - execute the monty instructions
- *@top: stack
- *@line_number: instruction number
+ *@strack: pointer to the top of the stack
+ *@line_number: line number
+ *Return: nothing
  */
 void get_op_function(stack_t **strack, unsigned int line_number)
 {
@@ -22,11 +23,10 @@ void get_op_function(stack_t **strack, unsigned int line_number)
 		{"pchar", pchar},
 		{"pstr", pstr},
 		{"rotr", rotr},
-		{NULL, NULL}
-	};
+		{NULL, NULL}};
 	int i;
 	int unknown_opcode = 1;
-	
+
 	for (i = 0; instruction[i].opcode != NULL; i++)
 	{
 		if (strcmp(instruction[i].opcode, global.line[0]) == 0)
@@ -34,14 +34,15 @@ void get_op_function(stack_t **strack, unsigned int line_number)
 			instruction[i].f(strack, line_number);
 			unknown_opcode = 0;
 			break;
-		}		
+		}
 	}
-	if (unknown_opcode == 1)
+	if (unknown_opcode)
 	{
-		fprintf(stderr, "L%i: unknown instruction %s\n", line_number, global.line[0]);
+		fprintf(stderr, "L%u: unknown instruction %s\n",
+				line_number, global.line[0]);
 		release(NULL, NULL, 'r');
-		free_dlistint(*strack);
 		free(global.line);
+		free_dlistint(*strack);
 		exit(EXIT_FAILURE);
 	}
 }

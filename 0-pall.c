@@ -1,5 +1,4 @@
 #include "monty.h"
-global_t global;
 /**
  *pall - print the elements into the stack in Lifo way
  *@stack: stack of elements

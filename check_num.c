@@ -8,11 +8,11 @@ int check_num(char *number)
 {
 	int i = 0;
 
-    while (number[i]!= '\0')
-    {
-        if (number[i] < '0' || number[i] > '9')
-            return (-1);
-        i++;
-    }
-    return (1);
+	while (number[i] != '\0')
+	{
+		if (number[i] < '0' || number[i] > '9')
+			return (-1);
+		i++;
+	}
+	return (1);
 }

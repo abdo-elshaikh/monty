@@ -6,7 +6,7 @@
 void free_double(char **d)
 {
 	int i = 0;
-	
+
 	while (d[i] != NULL)
 	{
 		free(d[i]);
